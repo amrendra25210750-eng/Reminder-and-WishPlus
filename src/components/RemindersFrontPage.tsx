@@ -29,14 +29,9 @@ import { getCelebrationCountdown, formatEventBadge } from '../utils/dateUtils';
 import { buildWhatsAppLink, maskPhoneNumber } from '../utils/whatsapp';
 import { DEFAULT_TEMPLATES, resolveMessage } from '../utils/templates';
 import { THEMES } from '../utils/themeStyles';
+import { APP_ASSETS, handleImageError } from '../utils/assets';
 
-export const OCCASION_ASSETS = {
-  birthday: '/src/assets/images/birthday_celebration_1791088804123.jpg',
-  anniversary: '/src/assets/images/anniversary_celebration_1791088816279.jpg',
-  combo: '/src/assets/images/anniversary_celebration_1791088816279.jpg',
-  other: '/src/assets/images/festive_milestone_1791088827841.jpg',
-  hero: '/src/assets/images/celebration_hero_banner_1791088838359.jpg',
-};
+export const OCCASION_ASSETS = APP_ASSETS;
 
 interface Props {
   celebrants: Celebrant[];
@@ -229,6 +224,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
               src={OCCASION_ASSETS.hero}
               alt="Celebration Balloons and Confetti"
               referrerPolicy="no-referrer"
+              onError={(e) => handleImageError(e, 'hero')}
               className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-700"
             />
             <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
@@ -327,6 +323,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                   src={OCCASION_ASSETS.hero}
                   alt="All Reminders"
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, 'hero')}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
@@ -357,6 +354,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                   src={OCCASION_ASSETS.birthday}
                   alt="Birthday Cake Picture"
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, 'birthday')}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
@@ -390,6 +388,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                   src={OCCASION_ASSETS.anniversary}
                   alt="Anniversary Champagne Picture"
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, 'anniversary')}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
@@ -423,6 +422,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                   src={OCCASION_ASSETS.other}
                   alt="Festive Lanterns Picture"
                   referrerPolicy="no-referrer"
+                  onError={(e) => handleImageError(e, 'other')}
                   className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-300"
                 />
               </div>
@@ -453,6 +453,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                 src={getCardImage(todayItems[0].occasion)} 
                 alt="Today celebration"
                 referrerPolicy="no-referrer"
+                onError={(e) => handleImageError(e, todayItems[0].occasion === 'anniversary' || todayItems[0].occasion === 'combo' ? 'anniversary' : todayItems[0].occasion === 'birthday' ? 'birthday' : 'other')}
                 className="w-full h-full object-cover"
               />
             </div>
@@ -559,6 +560,7 @@ export const RemindersFrontPage: React.FC<Props> = ({
                         src={cardImage}
                         alt={`${c.name} celebration`}
                         referrerPolicy="no-referrer"
+                        onError={(e) => handleImageError(e, isAnniversary || isCombo ? 'anniversary' : isBirthday ? 'birthday' : 'other')}
                         className="w-full h-full object-cover object-center transform group-hover:scale-108 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/75 via-black/25 to-transparent" />
