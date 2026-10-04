@@ -1,0 +1,6 @@
+{
+  "name": "WishPulse WhatsApp Celebration Manager",
+  "description": "Personalized WhatsApp greeting dispatcher and live message previewer for birthdays and anniversaries from custom contacts data.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
